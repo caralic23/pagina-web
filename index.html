@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyas Elegantes - Tienda de Bisutería</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5CF6',
+                        secondary: '#F59E0B',
+                        accent: '#EC4899'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-gem text-2xl text-primary"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">Joyas Elegantes</h1>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-primary transition-colors">Inicio</a>
+                    <a href="#productos" class="text-gray-600 hover:text-primary transition-colors">Productos</a>
+                    <a href="#categorias" class="text-gray-600 hover:text-primary transition-colors">Categorías</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-primary transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Cart and Search -->
+                <div class="flex items-center space-x-4">
+                    <button id="searchBtn" class="text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-search text-xl"></i>
+                    </button>
+                    <button id="cartBtn" class="relative text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    <button class="md:hidden text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-bold mb-6">Descubre la Elegancia</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Encuentra las mejores piezas de bisutería que complementarán tu estilo único. Diseños exclusivos y de alta calidad.</p>
+            <button class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                Ver Colección
+            </button>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categorias" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Nuestras Categorías</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card text-center p-6 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                    <i class="fas fa-ring text-4xl text-primary mb-4"></i>
+                    <h4 class="font-semibold text-gray-800">Anillos</h4>
+                </div>
+                <div class="category-card text-center p-6 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                    <i class="fas fa-gem text-4xl text-secondary mb-4"></i>
+                    <h4 class="font-semibold text-gray-800">Collares</h4>
+                </div>
+                <div class="category-card text-center p-6 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                    <i class="fas fa-heart text-4xl text-accent mb-4"></i>
+                    <h4 class="font-semibold text-gray-800">Pendientes</h4>
+                </div>
+                <div class="category-card text-center p-6 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                    <i class="fas fa-star text-4xl text-primary mb-4"></i>
+                    <h4 class="font-semibold text-gray-800">Pulseras</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Productos Destacados</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-800">Carrito de Compras</h3>
+                <button id="closeCart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="cartItems" class="space-y-4 mb-6">
+                <!-- Cart items will be displayed here -->
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-semibold text-gray-800">Total:</span>
+                    <span id="cartTotal" class="font-bold text-xl text-primary">$0.00</span>
+                </div>
+                <button id="checkoutBtn" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+                    Proceder al Pago
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cartOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Joyas Elegantes</h4>
+                    <p class="text-gray-300">Tu destino para bisutería elegante y de calidad.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Enlaces Rápidos</h5>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#productos" class="hover:text-white transition-colors">Productos</a></li>
+                        <li><a href="#categorias" class="hover:text-white transition-colors">Categorías</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Contacto</h5>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone mr-2"></i>+1 234 567 890</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@joyaselegantes.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Calle Principal 123</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Síguenos</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Joyas Elegantes. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
