@@ -258,6 +258,160 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Chatbot functionality
+const chatbotIcon = document.getElementById('chatbotIcon');
+const chatbotModal = document.getElementById('chatbotModal');
+const chatbotOverlay = document.getElementById('chatbotOverlay');
+const closeChat = document.getElementById('closeChat');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const sendMessage = document.getElementById('sendMessage');
+const chatNotification = document.getElementById('chatNotification');
+
+let isChatOpen = false;
+
+// Respuestas del chatbot de Azure
+const azureBotResponses = {
+    'hola': '¡Hola! Soy tu asistente virtual de Azure. ¿En qué puedo ayudarte con nuestros productos de joyería?',
+    'precios': 'Nuestros precios están en pesos colombianos y van desde $55,000 hasta $145,000. ¿Te gustaría ver algún producto específico?',
+    'envio': 'Ofrecemos envío gratuito en compras superiores a $200,000. Envío estándar: $15,000. Envío express: $25,000.',
+    'devolucion': 'Aceptamos devoluciones hasta 30 días después de la compra. El producto debe estar en su empaque original.',
+    'talla': 'Nuestros anillos vienen en tallas estándar. Si necesitas una talla específica, contáctanos.',
+    'material': 'Trabajamos con plata 925, oro bañado, cristales Swarovski y perlas naturales de alta calidad.',
+    'ayuda': 'Puedo ayudarte con información sobre productos, precios, envíos, devoluciones y tallas. ¿Qué te interesa?',
+    'gracias': '¡De nada! Estoy aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?',
+    'adios': '¡Que tengas un excelente día! No dudes en volver si necesitas más ayuda.',
+    'anillos': 'Tenemos una hermosa colección de anillos desde $55,000. ¿Te gustaría ver algún estilo específico?',
+    'collares': 'Nuestros collares van desde $125,000. Tenemos diseños elegantes con perlas naturales y cristales.',
+    'pendientes': 'Los pendientes están desde $55,000. Tenemos desde aros simples hasta diseños con cristales Swarovski.',
+    'pulseras': 'Las pulseras van desde $65,000. Tenemos de cuero con plata y cristales multicolor.',
+    'default': 'Entiendo tu consulta. Te recomiendo revisar nuestro catálogo o contactar directamente con nuestro equipo de atención al cliente para obtener una respuesta más específica.'
+};
+
+function openChat() {
+    isChatOpen = true;
+    chatbotModal.classList.remove('scale-0', 'opacity-0');
+    chatbotModal.classList.add('scale-100', 'opacity-100', 'modal-enter');
+    chatbotOverlay.classList.remove('hidden');
+    chatNotification.classList.add('hidden');
+    chatInput.focus();
+    
+    // Remover la clase de animación después de que termine
+    setTimeout(() => {
+        chatbotModal.classList.remove('modal-enter');
+    }, 300);
+}
+
+function closeChatModal() {
+    isChatOpen = false;
+    chatbotModal.classList.add('scale-0', 'opacity-0');
+    chatbotModal.classList.remove('scale-100', 'opacity-100');
+    chatbotOverlay.classList.add('hidden');
+}
+
+function addMessage(message, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'flex items-start space-x-2 chat-message';
+    
+    if (isUser) {
+        messageDiv.innerHTML = `
+            <div class="flex-1"></div>
+            <div class="bg-primary text-white rounded-lg p-3 max-w-xs">
+                <p class="text-sm">${message}</p>
+            </div>
+            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-user text-gray-600 text-xs"></i>
+            </div>
+        `;
+    } else {
+        messageDiv.innerHTML = `
+            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-robot text-white text-xs"></i>
+            </div>
+            <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                <p class="text-sm text-gray-800">${message}</p>
+            </div>
+        `;
+    }
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function getAzureBotResponse(userMessage) {
+    const message = userMessage.toLowerCase();
+    
+    for (const [key, response] of Object.entries(azureBotResponses)) {
+        if (message.includes(key)) {
+            return response;
+        }
+    }
+    
+    return azureBotResponses.default;
+}
+
+function sendChatMessage() {
+    const message = chatInput.value.trim();
+    if (message === '') return;
+    
+    // Agregar mensaje del usuario
+    addMessage(message, true);
+    chatInput.value = '';
+    
+    // Mostrar indicador de escritura
+    showTypingIndicator();
+    
+    // Simular respuesta del bot de Azure con delay
+    setTimeout(() => {
+        hideTypingIndicator();
+        const botResponse = getAzureBotResponse(message);
+        addMessage(botResponse, false);
+    }, 1500);
+}
+
+function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'flex items-start space-x-2 chat-message typing-message';
+    typingDiv.innerHTML = `
+        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-robot text-white text-xs"></i>
+        </div>
+        <div class="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+    `;
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTypingIndicator() {
+    const typingMessage = chatMessages.querySelector('.typing-message');
+    if (typingMessage) {
+        typingMessage.remove();
+    }
+}
+
+// Event listeners para el chatbot
+chatbotIcon.addEventListener('click', openChat);
+closeChat.addEventListener('click', closeChatModal);
+chatbotOverlay.addEventListener('click', closeChatModal);
+sendMessage.addEventListener('click', sendChatMessage);
+
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendChatMessage();
+    }
+});
+
+// Mostrar notificación después de 5 segundos
+setTimeout(() => {
+    if (!isChatOpen) {
+        chatNotification.classList.remove('hidden');
+    }
+}, 5000);
+
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
     displayProducts();

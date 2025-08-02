@@ -1,135 +1,126 @@
 # Joyas Elegantes - Tienda de Bisutería
 
-Una página web profesional para una tienda de bisutería con carrito de compras funcional, diseñada con HTML, Tailwind CSS y JavaScript.
+Una tienda web moderna y elegante para bisutería, construida con HTML, CSS y JavaScript, integrada con un bot de Azure para atención al cliente.
 
-## 🎯 Características
+## 🚀 Características
 
-### ✨ Diseño y UX
-- **Diseño Responsive**: Se adapta perfectamente a dispositivos móviles, tablets y desktop
-- **Interfaz Moderna**: Utiliza Tailwind CSS para un diseño limpio y profesional
-- **Animaciones Suaves**: Efectos de hover y transiciones para una mejor experiencia de usuario
-- **Gradientes Dinámicos**: Hero section con gradiente animado
-- **Iconografía**: Font Awesome para iconos consistentes
+### Diseño y UX
+- **Diseño Responsivo**: Adaptable a todos los dispositivos
+- **Interfaz Moderna**: Utilizando Tailwind CSS para un diseño elegante
+- **Animaciones Suaves**: Transiciones y efectos visuales profesionales
+- **Gradientes Dinámicos**: Efectos de color atractivos
 
-### 🛒 Funcionalidades del Carrito
-- **Agregar Productos**: Botón "Agregar" en cada producto
-- **Gestión de Cantidades**: Incrementar/decrementar cantidades
-- **Eliminar Productos**: Botón de eliminar individual
-- **Cálculo Automático**: Total actualizado en tiempo real
-- **Persistencia**: Los datos se guardan en localStorage
-- **Notificaciones**: Feedback visual al agregar productos
+### Funcionalidades de E-commerce
+- **Catálogo de Productos**: Visualización de productos con imágenes y descripciones
+- **Carrito de Compras**: Gestión completa de productos seleccionados
+- **Categorías**: Organización por tipos de joyas (anillos, collares, pendientes, pulseras)
+- **Persistencia Local**: Los productos del carrito se mantienen entre sesiones
 
-### 📱 Navegación
-- **Header Sticky**: Navegación siempre visible
-- **Scroll Suave**: Navegación entre secciones
-- **Menú Responsive**: Adaptado para móviles
-- **Búsqueda**: Botón de búsqueda (preparado para futuras implementaciones)
+### Bot de Azure Integrado
+- **Asistente Virtual Profesional**: Bot de Azure para atención al cliente
+- **Icono Personalizado**: Diseño SVG profesional con colores de Azure
+- **Interfaz Elegante**: Modal con gradientes y animaciones suaves
+- **Indicador de Estado**: Muestra cuando el bot está conectado
+- **Notificaciones**: Badge de notificación para atraer la atención
 
-### 🎨 Secciones
-1. **Hero Section**: Presentación principal con call-to-action
-2. **Categorías**: Iconos interactivos para diferentes tipos de bisutería
-3. **Productos**: Grid responsive con productos destacados
-4. **Footer**: Información de contacto y enlaces sociales
-
-## 🚀 Tecnologías Utilizadas
+## 🛠️ Tecnologías Utilizadas
 
 - **HTML5**: Estructura semántica
+- **CSS3**: Estilos y animaciones personalizadas
+- **JavaScript**: Funcionalidad interactiva
 - **Tailwind CSS**: Framework de utilidades CSS
-- **JavaScript ES6+**: Funcionalidad interactiva
 - **Font Awesome**: Iconos
-- **LocalStorage**: Persistencia de datos del carrito
+- **Azure Bot Service**: Bot de inteligencia artificial
 
 ## 📁 Estructura del Proyecto
 
 ```
 pagina web/
 ├── index.html          # Página principal
-├── script.js           # Funcionalidad JavaScript
 ├── styles.css          # Estilos personalizados
+├── script.js           # Funcionalidad JavaScript
+├── azure-bot-icon.svg  # Icono personalizado del bot
 └── README.md           # Documentación
 ```
 
-## 🛠️ Instalación y Uso
+## 🎨 Características del Bot de Azure
+
+### Icono Profesional
+- **Diseño SVG**: Icono vectorial escalable
+- **Colores de Azure**: Gradientes azules oficiales de Microsoft
+- **Animaciones**: Efectos de hover y pulso
+- **Indicador de Estado**: Punto verde animado
+
+### Modal del Chat
+- **Tamaño Optimizado**: 384px x 500px para mejor experiencia
+- **Header Elegante**: Con gradiente y efectos de brillo
+- **Iframe Integrado**: Bot de Azure embebido sin bordes
+- **Animaciones Suaves**: Transiciones profesionales
+
+### Funcionalidades
+- **Apertura/Cierre**: Control completo del modal
+- **Overlay**: Fondo oscuro para mejor contraste
+- **Notificaciones**: Badge animado para atraer usuarios
+- **Responsive**: Adaptable a diferentes tamaños de pantalla
+
+## 🚀 Cómo Usar
 
 1. **Clonar o descargar** el proyecto
-2. **Abrir** `index.html` en tu navegador web
-3. **¡Listo!** La página está completamente funcional
+2. **Abrir** `index.html` en un navegador web
+3. **Navegar** por las categorías y productos
+4. **Agregar productos** al carrito
+5. **Usar el bot** haciendo clic en el icono flotante
 
-No se requieren dependencias adicionales ya que utilizamos CDNs para Tailwind CSS y Font Awesome.
+## 🎯 Funcionalidades del Bot
+
+El bot de Azure está configurado para:
+- Responder preguntas sobre productos
+- Proporcionar información de precios
+- Ayudar con envíos y devoluciones
+- Asistir en el proceso de compra
+- Ofrecer recomendaciones personalizadas
 
 ## 🎨 Personalización
 
-### Colores
-Los colores principales están definidos en la configuración de Tailwind:
-- **Primary**: `#8B5CF6` (Púrpura)
-- **Secondary**: `#F59E0B` (Ámbar)
-- **Accent**: `#EC4899` (Rosa)
+### Colores del Bot
+Los colores del bot están basados en la paleta oficial de Azure:
+- **Azul Principal**: #0078d4
+- **Azul Secundario**: #106ebe
+- **Azul Oscuro**: #005a9e
 
-### Productos
-Para agregar o modificar productos, edita el array `products` en `script.js`:
-
-```javascript
-const products = [
-    {
-        id: 1,
-        name: "Nombre del Producto",
-        price: 85000, // Precio en pesos colombianos (COP)
-        image: "URL_de_la_imagen",
-        category: "categoria",
-        description: "Descripción del producto"
-    }
-    // ... más productos
-];
-```
-
-**Nota:** Los precios están en pesos colombianos (COP) y se formatean automáticamente con separadores de miles.
-
-### Estilos
-Los estilos personalizados están en `styles.css` e incluyen:
-- Animaciones personalizadas
-- Efectos hover
-- Gradientes dinámicos
-- Scrollbar personalizada
+### Animaciones
+- **Float**: Movimiento suave del icono
+- **Pulse**: Indicador de estado en línea
+- **Shimmer**: Efecto de brillo en el header
+- **Scale**: Efectos de hover
 
 ## 📱 Responsive Design
 
-La página está optimizada para:
-- **Móviles**: 320px - 768px
-- **Tablets**: 768px - 1024px
-- **Desktop**: 1024px+
+El bot está optimizado para:
+- **Desktop**: Modal completo con iframe
+- **Tablet**: Tamaño adaptado
+- **Mobile**: Modal más compacto
 
-## 🔧 Funcionalidades Técnicas
+## 🔧 Configuración del Bot
 
-### Carrito de Compras
-- **Gestión de Estado**: Array de productos en memoria
-- **Persistencia**: LocalStorage para mantener el carrito entre sesiones
-- **Validaciones**: Verificación de cantidades y productos existentes
-- **Cálculos**: Total automático con formato de moneda colombiana (COP)
+El bot de Azure está configurado con:
+- **Web Chat**: Integración directa con Azure Bot Service
+- **URL**: `https://webchat.botframework.com/embed/JoyasElegantesBot/...`
+- **Tamaño**: 100% del contenedor
+- **Sin bordes**: Integración seamless
 
-### Interacciones
-- **Event Listeners**: Para botones del carrito y navegación
-- **DOM Manipulation**: Actualización dinámica del contenido
-- **Smooth Scrolling**: Navegación suave entre secciones
+## 🎉 Características Destacadas
 
-## 🎯 Próximas Mejoras
+- ✅ **Diseño Profesional**: Interfaz elegante y moderna
+- ✅ **Bot de Azure**: Asistente virtual inteligente
+- ✅ **Carrito Funcional**: Gestión completa de productos
+- ✅ **Animaciones Suaves**: Experiencia de usuario fluida
+- ✅ **Responsive**: Adaptable a todos los dispositivos
+- ✅ **Persistencia**: Datos guardados localmente
 
-- [ ] Filtros por categoría
-- [ ] Búsqueda de productos
-- [ ] Galería de imágenes por producto
-- [ ] Sistema de reseñas
-- [ ] Integración con pasarela de pagos
-- [ ] Panel de administración
-- [ ] Base de datos para productos
+## 📞 Soporte
 
-## 📞 Contacto
-
-Para soporte o consultas sobre el proyecto, puedes contactar a través de:
-- **Email**: info@joyaselegantes.com
-- **Teléfono**: +1 234 567 890
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Puedes usarlo libremente para proyectos personales y comerciales.
+Para soporte técnico o preguntas sobre la integración del bot de Azure, contacta al equipo de desarrollo.
 
 ---
 

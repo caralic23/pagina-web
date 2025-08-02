@@ -189,4 +189,292 @@
 
 .footer-link:hover::after {
     width: 100%;
+}
+
+/* Estilos para el chatbot */
+.chatbot-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Estilos específicos para el bot de Azure */
+.azure-bot-icon {
+    background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+    box-shadow: 0 4px 20px rgba(0, 120, 212, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.azure-bot-icon:hover {
+    background: linear-gradient(135deg, #106ebe 0%, #005a9e 100%);
+    box-shadow: 0 6px 25px rgba(0, 120, 212, 0.4);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.azure-bot-header {
+    background: linear-gradient(135deg, #0078d4 0%, #106ebe 50%, #005a9e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.azure-bot-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.azure-bot-modal {
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+/* Animación de pulso para el indicador de estado */
+.status-indicator {
+    animation: pulse-green 2s infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+@keyframes pulse-green {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    }
+}
+
+/* Mejoras para el chat */
+#chatMessages {
+    background: #f8fafc;
+    border-radius: 0 0 8px 8px;
+}
+
+#chatInput {
+    transition: all 0.3s ease;
+}
+
+#chatInput:focus {
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+#sendMessage {
+    transition: all 0.3s ease;
+}
+
+#sendMessage:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para los mensajes del chat */
+.chat-message {
+    animation: slideIn 0.3s ease-out;
+}
+
+.chat-message .bg-primary {
+    background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+}
+
+.chat-message .bg-gray-100 {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 1px solid #e2e8f0;
+}
+
+/* Indicador de escritura */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: #64748b;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typing {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Scrollbar personalizada para el chat */
+#chatMessages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chatMessages::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+#chatMessages::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+#chatMessages::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Efecto de carga para el bot */
+.bot-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.bot-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 120, 212, 0.1), transparent);
+    animation: loading-azure 1.5s infinite;
+}
+
+@keyframes loading-azure {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Efectos adicionales para el icono del bot */
+.azure-bot-icon img {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+}
+
+.azure-bot-icon:hover img {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transform: scale(1.1);
+}
+
+/* Mejoras para el modal del bot */
+#chatbotModal {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#chatbotModal.scale-100 {
+    transform: scale(1) translateY(0);
+}
+
+#chatbotModal.scale-0 {
+    transform: scale(0.8) translateY(20px);
+}
+
+/* Efecto de entrada suave */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-enter {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.chat-message {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chat-typing {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #8B5CF6;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Efecto de ondas para el icono del chatbot */
+.chatbot-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.chatbot-ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.chatbot-ripple:active::before {
+    width: 300px;
+    height: 300px;
 } 
